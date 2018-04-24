@@ -16,6 +16,11 @@ class User
      * Adding personal methods / variables
      */
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Review", mappedBy="reviewAuthor")
+     */
+    private $reviewAuthors;
+
     public function __toString()
     {
         // Return the User object with "[firstName] [lastName]" format, when __toString is called.

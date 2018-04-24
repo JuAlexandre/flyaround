@@ -15,11 +15,22 @@ class Review
     /*
      * Adding personal methods / variables
      */
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $userRated;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="reviewAuthors")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $reviewAuthor;
 
     public function __toString()
     {
         // Return the Review object with "[id]" format, when __toString is called.
-        return "id: " . $this->id;
+        return "$this->id";
     }
 
     /*
