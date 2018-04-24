@@ -26,6 +26,11 @@ class User
      */
     private $pilots;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="passenger")
+     */
+    private $passengers;
+
     public function __toString()
     {
         // Return the User object with "[firstName] [lastName]" format, when __toString is called.
@@ -347,5 +352,39 @@ class User
     public function getPilots()
     {
         return $this->pilots;
+    }
+
+    /**
+     * Add passenger
+     *
+     * @param \AppBundle\Entity\Reservation $passenger
+     *
+     * @return User
+     */
+    public function addPassenger(\AppBundle\Entity\Reservation $passenger)
+    {
+        $this->passengers[] = $passenger;
+
+        return $this;
+    }
+
+    /**
+     * Remove passenger
+     *
+     * @param \AppBundle\Entity\Reservation $passenger
+     */
+    public function removePassenger(\AppBundle\Entity\Reservation $passenger)
+    {
+        $this->passengers->removeElement($passenger);
+    }
+
+    /**
+     * Get passengers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPassengers()
+    {
+        return $this->passengers;
     }
 }
