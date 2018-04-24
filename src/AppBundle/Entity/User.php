@@ -21,6 +21,11 @@ class User
      */
     private $reviewAuthors;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Flight", mappedBy="pilot")
+     */
+    private $pilots;
+
     public function __toString()
     {
         // Return the User object with "[firstName] [lastName]" format, when __toString is called.
@@ -267,5 +272,80 @@ class User
     {
         return $this->isACertifiedPilot;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->reviewAuthors = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->pilots = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add reviewAuthor
+     *
+     * @param \AppBundle\Entity\Review $reviewAuthor
+     *
+     * @return User
+     */
+    public function addReviewAuthor(\AppBundle\Entity\Review $reviewAuthor)
+    {
+        $this->reviewAuthors[] = $reviewAuthor;
+
+        return $this;
+    }
+
+    /**
+     * Remove reviewAuthor
+     *
+     * @param \AppBundle\Entity\Review $reviewAuthor
+     */
+    public function removeReviewAuthor(\AppBundle\Entity\Review $reviewAuthor)
+    {
+        $this->reviewAuthors->removeElement($reviewAuthor);
+    }
+
+    /**
+     * Get reviewAuthors
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReviewAuthors()
+    {
+        return $this->reviewAuthors;
+    }
+
+    /**
+     * Add pilot
+     *
+     * @param \AppBundle\Entity\Flight $pilot
+     *
+     * @return User
+     */
+    public function addPilot(\AppBundle\Entity\Flight $pilot)
+    {
+        $this->pilots[] = $pilot;
+
+        return $this;
+    }
+
+    /**
+     * Remove pilot
+     *
+     * @param \AppBundle\Entity\Flight $pilot
+     */
+    public function removePilot(\AppBundle\Entity\Flight $pilot)
+    {
+        $this->pilots->removeElement($pilot);
+    }
+
+    /**
+     * Get pilots
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPilots()
+    {
+        return $this->pilots;
+    }
+}

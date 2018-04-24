@@ -21,6 +21,11 @@ class Site
      */
     private $departures;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Flight", mappedBy="arrival")
+     */
+    private $arrivals;
+
     public function __toString()
     {
         // Return the Site object with "[ICAO] - [NAME] [CITY]" format, when __toString is called.
@@ -245,5 +250,39 @@ class Site
     public function getDepartures()
     {
         return $this->departures;
+    }
+
+    /**
+     * Add arrival
+     *
+     * @param \AppBundle\Entity\Flight $arrival
+     *
+     * @return Site
+     */
+    public function addArrival(\AppBundle\Entity\Flight $arrival)
+    {
+        $this->arrivals[] = $arrival;
+
+        return $this;
+    }
+
+    /**
+     * Remove arrival
+     *
+     * @param \AppBundle\Entity\Flight $arrival
+     */
+    public function removeArrival(\AppBundle\Entity\Flight $arrival)
+    {
+        $this->arrivals->removeElement($arrival);
+    }
+
+    /**
+     * Get arrivals
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getArrivals()
+    {
+        return $this->arrivals;
     }
 }
