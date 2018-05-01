@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Review;
 use http\Env\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -21,7 +22,13 @@ class ReviewController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('review/index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $reviews = $em->getRepository('AppBundle:Review')->findAll();
+
+        return $this->render('review/index.html.twig', array(
+            'reviews' => $reviews,
+        ));
     }
 
     /**
@@ -30,8 +37,12 @@ class ReviewController extends Controller
      * @Route("/new", name="review_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction()
+    public function newAction(Request $request)
     {
-        return $this->render('review/new.html.twig');
+        $review = new Review();
+
+        return $this->render('review/new.html.twig', array(
+            'review' => $review,
+        ));
     }
 }
