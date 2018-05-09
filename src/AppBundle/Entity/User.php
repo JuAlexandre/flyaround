@@ -2,15 +2,16 @@
 
 namespace AppBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="`user`")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User extends BaseUser
 {
     /*
      * Adding personal methods / variables
@@ -48,56 +49,56 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=32)
      */
-    private $firstName;
+    protected $firstName;
 
     /**
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=32)
      */
-    private $lastName;
+    protected $lastName;
 
     /**
      * @var string
      *
      * @ORM\Column(name="phoneNumber", type="string", length=32)
      */
-    private $phoneNumber;
+    protected $phoneNumber;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="birthDate", type="date")
      */
-    private $birthDate;
+    protected $birthDate;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="creationDate", type="datetime")
      */
-    private $creationDate;
+    protected $creationDate;
 
     /**
      * @var int
      *
      * @ORM\Column(name="note", type="smallint")
      */
-    private $note;
+    protected $note;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="isACertifiedPilot", type="boolean")
      */
-    private $isACertifiedPilot;
+    protected $isACertifiedPilot;
 
 
     /**
@@ -282,6 +283,8 @@ class User
      */
     public function __construct()
     {
+        parent::__construct();
+
         $this->reviewAuthors = new \Doctrine\Common\Collections\ArrayCollection();
         $this->pilots = new \Doctrine\Common\Collections\ArrayCollection();
     }
