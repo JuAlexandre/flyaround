@@ -56,49 +56,49 @@ class User extends BaseUser
      *
      * @ORM\Column(name="firstName", type="string", length=32)
      */
-    protected $firstName;
+    private $firstName;
 
     /**
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=32)
      */
-    protected $lastName;
+    private $lastName;
 
     /**
      * @var string
      *
      * @ORM\Column(name="phoneNumber", type="string", length=32)
      */
-    protected $phoneNumber;
+    private $phoneNumber;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="birthDate", type="date")
      */
-    protected $birthDate;
+    private $birthDate;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="creationDate", type="datetime")
      */
-    protected $creationDate;
+    private $creationDate;
 
     /**
      * @var int
      *
      * @ORM\Column(name="note", type="smallint")
      */
-    protected $note;
+    private $note;
 
     /**
      * @var bool
      *
      * @ORM\Column(name="isACertifiedPilot", type="boolean")
      */
-    protected $isACertifiedPilot;
+    private $isACertifiedPilot;
 
 
     /**
@@ -287,6 +287,7 @@ class User extends BaseUser
 
         $this->reviewAuthors = new \Doctrine\Common\Collections\ArrayCollection();
         $this->pilots = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->passengers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
