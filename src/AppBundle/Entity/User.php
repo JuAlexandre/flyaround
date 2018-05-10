@@ -82,7 +82,7 @@ class User extends BaseUser
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="creationDate", type="datetime")
+     * @ORM\Column(name="creationDate", type="datetime", nullable=true)
      */
     private $creationDate;
 
@@ -96,7 +96,7 @@ class User extends BaseUser
     /**
      * @var bool
      *
-     * @ORM\Column(name="isACertifiedPilot", type="boolean", nullable=true)
+     * @ORM\Column(name="isACertifiedPilot", type="boolean")
      */
     private $isACertifiedPilot;
 
