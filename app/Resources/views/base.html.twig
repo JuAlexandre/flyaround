@@ -1,15 +1,42 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('build/mainCss.css') }}">
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('build/mainCss.css') }}">
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ path('homepage') }}">Flyaround</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('planemodel_index') }}">Avions</a></li>
+                    <li><a href="{{ path('reservation_index') }}">Réservations</a></li>
+                    <li><a href="{{ path('flight_index') }}">Vols</a></li>
+                    <li><a href="{{ path('site_index') }}">Terrains</a></li>
+                    <li><a href="{{ path('review_index') }}">Avis</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <a class="btn btn-primary navbar-btn" href="/login">S'identifier</a>
+                    <a class="btn btn-default navbar-btn" href="/register">S'inscrire</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block body %}{% endblock %}
         <script src="{{ asset('build/mainJs.js') }}"></script>
-        {% block javascripts %}{% endblock %}
-    </body>
+    {% block javascripts %}{% endblock %}
+</body>
 </html>

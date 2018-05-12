@@ -5816,6 +5816,7 @@ button.close {
 
 body {
   background: #F5F5F5;
+  padding-top: 75px;
   font: 18px/1.5 sans-serif; }
 
 h1, h2 {
