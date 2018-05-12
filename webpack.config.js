@@ -3,11 +3,12 @@ var Encore = require('@symfony/webpack-encore');
 Encore
     .setOutputPath('web/build/')
     .setPublicPath('/web')
-    .addEntry('main', './assets/scss/main.scss')
+    .addEntry('mainCss', './assets/scss/main.scss')
+    .addEntry('mainJs', './assets/js/main.js')
     .cleanupOutputBeforeBuild()
     .enableBuildNotifications()
     .enableSassLoader(function (sassOption) {}, {
-        resoleUrlLoader: false
+        resolveUrlLoader: false
     })
     .autoProvidejQuery();
 

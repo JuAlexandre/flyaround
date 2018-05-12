@@ -1,6 +1,7 @@
 {
-  "web/main.js": "/web/main.js",
-  "web/main.css": "/web/main.css",
+  "web/mainJs.js": "/web/mainJs.js",
+  "web/mainCss.js": "/web/mainCss.js",
+  "web/mainCss.css": "/web/mainCss.css",
   "web/fonts/glyphicons-halflings-regular.eot": "/web/fonts/glyphicons-halflings-regular.f4769f9b.eot",
   "web/images/glyphicons-halflings-regular.svg": "/web/images/glyphicons-halflings-regular.89889688.svg",
   "web/fonts/glyphicons-halflings-regular.ttf": "/web/fonts/glyphicons-halflings-regular.e18bbf61.ttf",
