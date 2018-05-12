@@ -8,6 +8,7 @@ Encore
     .enableBuildNotifications()
     .enableSassLoader(function (sassOption) {}, {
         resoleUrlLoader: false
-    });
+    })
+    .autoProvidejQuery();
 
 module.exports = Encore.getWebpackConfig();
