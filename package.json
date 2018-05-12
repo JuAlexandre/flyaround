@@ -1,0 +1,27 @@
+{
+  "name": "flyaround",
+  "version": "1.0.0",
+  "description": "Wild Code School : Quête : Symfony et Webpack Encore",
+  "main": "webpack.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "npm": "^6.0.1",
+    "webpack-notifier": "^1.6.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuAlexandre/flyaround.git"
+  },
+  "author": "Julien ALEXANDRE <julien.alexandre26@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuAlexandre/flyaround/issues"
+  },
+  "homepage": "https://github.com/JuAlexandre/flyaround#readme"
+}
