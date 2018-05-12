@@ -6,6 +6,8 @@ Encore
     .addEntry('main', './assets/scss/main.scss')
     .cleanupOutputBeforeBuild()
     .enableBuildNotifications()
-    .enableSassLoader();
+    .enableSassLoader(function (sassOption) {}, {
+        resoleUrlLoader: false
+    });
 
 module.exports = Encore.getWebpackConfig();
