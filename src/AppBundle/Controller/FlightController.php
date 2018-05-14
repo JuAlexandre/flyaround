@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Flight;
+use AppBundle\Service\FlightInfo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -36,6 +37,9 @@ class FlightController extends Controller
      *
      * @Route("/new", name="flight_new")
      * @Method({"GET", "POST"})
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -62,13 +66,26 @@ class FlightController extends Controller
      *
      * @Route("/{id}", name="flight_show")
      * @Method("GET")
+     *
+     * @param Flight $flight
+     * @param FlightInfo $flightInfo
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showAction(Flight $flight)
+    public function showAction(Flight $flight, FlightInfo $flightInfo)
     {
+        // Calculate a flight distance between departure ans arrival
+        $distance = $flightInfo->getDistance(
+            $flight->getDeparture()->getLatitude(),
+            $flight->getDeparture()->getLongitude(),
+            $flight->getArrival()->getLatitude(),
+            $flight->getArrival()->getLongitude()
+        );
+
         $deleteForm = $this->createDeleteForm($flight);
 
         return $this->render('flight/show.html.twig', array(
             'flight' => $flight,
+            'flightDistance' => $distance,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -78,6 +95,10 @@ class FlightController extends Controller
      *
      * @Route("/{id}/edit", name="flight_edit")
      * @Method({"GET", "POST"})
+     *
+     * @param Request $request
+     * @param Flight $flight
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Flight $flight)
     {
