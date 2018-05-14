@@ -38,7 +38,7 @@ class FlightInfo
      */
     public function getDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo)
     {
-        $d = 0;
+        $distance = 0;
         $earth_radius = 6371;
         $dLat = deg2rad($latitudeTo - $latitudeFrom);
         $dLon = deg2rad($longitudeTo - $longitudeFrom);
@@ -48,16 +48,44 @@ class FlightInfo
 
         switch ($this->unit) {
             case 'km':
-                $d = $c * $earth_radius;
+                $distance = $c * $earth_radius;
                 break;
             case 'mi':
-                $d = $c * $earth_radius / 1.609344;
+                $distance = $c * $earth_radius / 1.609344;
                 break;
             case 'nmi':
-                $d = $c * $earth_radius / 1.852;
+                $distance = $c * $earth_radius / 1.852;
                 break;
         }
 
-        return $d;
+        return $distance;
+    }
+
+    /**
+     * Calculation of travel time as a function of the distance and cruising speed
+     * t = D / V
+     *
+     * @param float $distance
+     * @param float $cruiseSpeed
+     *
+     * @return float
+     */
+    public function getTime($distance, $cruiseSpeed)
+    {
+        $travelTime = 0;
+
+        switch ($this->unit) {
+            case 'km':
+                $travelTime = $distance / $cruiseSpeed;
+                break;
+            case 'mi':
+                $travelTime = ($distance * 1.609) / $cruiseSpeed;
+                break;
+            case 'nmi':
+                $travelTime = ($distance * 1.852) / $cruiseSpeed;
+                break;
+        }
+
+        return $travelTime;
     }
 }

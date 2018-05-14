@@ -25,6 +25,11 @@ class ListingController extends Controller
      * @ParamConverter("reservation", options={"mapping": {"reservation_id": "id"}})
      * @ParamConverter("flight", options={"mapping": {"flight_id": "id"}})
      * @ParamConverter("planemodel", options={"mapping": {"planemodel_id": "id"}})
+     *
+     * @param Reservation $reservation
+     * @param Flight $flight
+     * @param PlaneModel $planemodel
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Reservation $reservation, Flight $flight, PlaneModel $planemodel)
     {

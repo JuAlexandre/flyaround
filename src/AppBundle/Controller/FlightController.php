@@ -3,7 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Flight;
+use AppBundle\Entity\PlaneModel;
 use AppBundle\Service\FlightInfo;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -81,11 +83,17 @@ class FlightController extends Controller
             $flight->getArrival()->getLongitude()
         );
 
+        $travelTime = $flightInfo->getTime(
+            $distance,
+            $flight->getPlane()->getCruiseSpeed()
+        );
+
         $deleteForm = $this->createDeleteForm($flight);
 
         return $this->render('flight/show.html.twig', array(
             'flight' => $flight,
             'flightDistance' => $distance,
+            'travelTime' => $travelTime,
             'delete_form' => $deleteForm->createView(),
         ));
     }

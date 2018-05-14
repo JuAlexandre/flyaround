@@ -37,6 +37,7 @@ class ReviewController extends Controller
      *
      * @Route("/new", name="review_new")
      * @Method({"GET", "POST"})
+     *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -65,6 +66,7 @@ class ReviewController extends Controller
      *
      * @Route("/{id}", name="review_show")
      * @Method("GET")
+     *
      * @param Review $review
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -83,6 +85,7 @@ class ReviewController extends Controller
      *
      * @Route("/{id}/edit", name="review_edit")
      * @Method({"GET", "POST"})
+     *
      * @param Request $request
      * @param Review $review
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
@@ -111,6 +114,7 @@ class ReviewController extends Controller
      *
      * @Route("/{id}", name="review_delete")
      * @Method("DELETE")
+     *
      * @param Request $request
      * @param Review $review
      * @return \Symfony\Component\HttpFoundation\RedirectResponse

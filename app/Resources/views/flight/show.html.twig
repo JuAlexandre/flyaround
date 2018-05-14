@@ -36,6 +36,10 @@
                 <td>{% if flightDistance %}{{ flightDistance|number_format(2, ',', ' ') }}{% endif %} {{ unit }}</td>
             </tr>
             <tr>
+                <th>Temps de trajet</th>
+                <td>{% if travelTime %}{{ travelTime|number_format(2, ',', ' ') }}{% endif %} heure(s)</td>
+            </tr>
+            <tr>
                 <th>Wasdone</th>
                 <td>{% if flight.wasDone %}Yes{% else %}No{% endif %}</td>
             </tr>
