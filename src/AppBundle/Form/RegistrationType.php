@@ -19,11 +19,12 @@ class RegistrationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('firstName');
-        $builder->add('lastName');
-        $builder->add('phoneNumber');
-        $builder->add('birthDate', BirthdayType::class);
-        $builder->add('isACertifiedPilot');
+        $builder
+            ->add('firstName')
+            ->add('lastName')
+            ->add('phoneNumber')
+            ->add('birthDate', BirthdayType::class)
+            ->add('isACertifiedPilot');
     }
 
     /**
