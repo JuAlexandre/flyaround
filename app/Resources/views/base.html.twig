@@ -3,40 +3,35 @@
 <head>
     <meta charset="UTF-8"/>
     <title>{% block title %}Welcome!{% endblock %}</title>
-    <link rel="stylesheet" href="{{ asset('build/mainCss.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/style.css') }}">
     {% block stylesheets %}{% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{ path('homepage') }}">Flyaround</a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ path('planemodel_index') }}">Avions</a></li>
-                    <li><a href="{{ path('reservation_index') }}">Réservations</a></li>
-                    <li><a href="{{ path('flight_index') }}">Vols</a></li>
-                    <li><a href="{{ path('site_index') }}">Terrains</a></li>
-                    <li><a href="{{ path('review_index') }}">Avis</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <a class="btn btn-primary navbar-btn" href="/login">S'identifier</a>
-                    <a class="btn btn-default navbar-btn" href="/register">S'inscrire</a>
-                </ul>
-            </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="{{ path('homepage') }}">Flyaround</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="{{ path('planemodel_index') }}">Avions</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('reservation_index') }}">Réservations</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('flight_index') }}">Vols</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('site_index') }}">Terrains</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('review_index') }}">Avis</a></li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="btn btn-outline-primary mr-2" href="/login">Se connecter</a></li>
+                <li class="nav-item"><a class="btn btn-outline-primary" href="/register">S'inscrire</a></li>
+            </ul>
         </div>
     </nav>
+
+
     {% block body %}{% endblock %}
-        <script src="{{ asset('build/mainJs.js') }}"></script>
+        <script src="{{ asset('build/app.js') }}"></script>
     {% block javascripts %}{% endblock %}
 </body>
 </html>
