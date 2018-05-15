@@ -36,6 +36,9 @@ class ReservationController extends Controller
      *
      * @Route("/new", name="reservation_new")
      * @Method({"GET", "POST"})
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request)
     {
@@ -47,6 +50,24 @@ class ReservationController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($reservation);
             $em->flush();
+
+            /* Send mail with SwiftMailer */
+
+            /* Pilot Mail */
+            $message = (new \Swift_Message('Réservation Flyaround'))
+                ->setFrom('reservations@flyaround.com')
+                ->setTo($reservation->getFlight()->getPilot()->getEmail())
+                ->setBody('Quelqu\'un vient de réserver une place sur votre vol.<br/>Merci de voyager avec Flyaround', 'text/html');
+            $this->get('mailer')->send($message);
+
+            /* Passenger Mail */
+            $message = (new \Swift_Message('Réservation Flyaround'))
+                ->setFrom('reservations@flyaround.com')
+                ->setTo($this->getUser()->getEmail())
+                ->setBody('Votre réservation est enregistrée.<br/>Merci de voyager avec Flyaround', 'text/html');
+            $this->get('mailer')->send($message);
+
+            /* End send mail with SwiftMailer */
 
             return $this->redirectToRoute('reservation_show', array('id' => $reservation->getId()));
         }
@@ -62,6 +83,9 @@ class ReservationController extends Controller
      *
      * @Route("/{id}", name="reservation_show")
      * @Method("GET")
+     *
+     * @param Reservation $reservation
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction(Reservation $reservation)
     {
@@ -78,6 +102,10 @@ class ReservationController extends Controller
      *
      * @Route("/{id}/edit", name="reservation_edit")
      * @Method({"GET", "POST"})
+     *
+     * @param Request $request
+     * @param Reservation $reservation
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Reservation $reservation)
     {
@@ -103,6 +131,10 @@ class ReservationController extends Controller
      *
      * @Route("/{id}", name="reservation_delete")
      * @Method("DELETE")
+     *
+     * @param Request $request
+     * @param Reservation $reservation
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, Reservation $reservation)
     {
