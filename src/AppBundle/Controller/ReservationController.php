@@ -3,9 +3,11 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Reservation;
+use AppBundle\Service\Mailer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Reservation controller.
@@ -40,7 +42,7 @@ class ReservationController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, Mailer $mailer)
     {
         $reservation = new Reservation();
         $form = $this->createForm('AppBundle\Form\ReservationType', $reservation);
@@ -54,18 +56,20 @@ class ReservationController extends Controller
             /* Send mail with SwiftMailer */
 
             /* Pilot Mail */
-            $message = (new \Swift_Message('Réservation Flyaround'))
+            $mailer->sendMail($reservation->getFlight()->getPilot()->getEmail(), 'notification');
+            /*$message = (new \Swift_Message('Réservation Flyaround'))
                 ->setFrom('reservations@flyaround.com')
                 ->setTo($reservation->getFlight()->getPilot()->getEmail())
                 ->setBody('Quelqu\'un vient de réserver une place sur votre vol.<br/>Merci de voyager avec Flyaround', 'text/html');
-            $this->get('mailer')->send($message);
+            $this->get('mailer')->send($message);*/
 
             /* Passenger Mail */
-            $message = (new \Swift_Message('Réservation Flyaround'))
+            $mailer->sendMail($this->getUser()->getEmail(), 'confirmation');
+            /*$message = (new \Swift_Message('Réservation Flyaround'))
                 ->setFrom('reservations@flyaround.com')
                 ->setTo($this->getUser()->getEmail())
                 ->setBody('Votre réservation est enregistrée.<br/>Merci de voyager avec Flyaround', 'text/html');
-            $this->get('mailer')->send($message);
+            $this->get('mailer')->send($message);*/
 
             /* End send mail with SwiftMailer */
 
