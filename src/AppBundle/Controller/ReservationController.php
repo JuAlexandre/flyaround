@@ -56,20 +56,20 @@ class ReservationController extends Controller
             /* Send mail with SwiftMailer */
 
             /* Pilot Mail */
-            $mailer->sendMail($reservation->getFlight()->getPilot()->getEmail(), 'notification');
-            /*$message = (new \Swift_Message('Réservation Flyaround'))
-                ->setFrom('reservations@flyaround.com')
-                ->setTo($reservation->getFlight()->getPilot()->getEmail())
-                ->setBody('Quelqu\'un vient de réserver une place sur votre vol.<br/>Merci de voyager avec Flyaround', 'text/html');
-            $this->get('mailer')->send($message);*/
+            try {
+                $mailer->sendMail($reservation->getFlight()->getPilot()->getEmail(), 'notification');
+            } catch (\Twig_Error_Loader $e) {
+            } catch (\Twig_Error_Runtime $e) {
+            } catch (\Twig_Error_Syntax $e) {
+            }
 
             /* Passenger Mail */
-            $mailer->sendMail($this->getUser()->getEmail(), 'confirmation');
-            /*$message = (new \Swift_Message('Réservation Flyaround'))
-                ->setFrom('reservations@flyaround.com')
-                ->setTo($this->getUser()->getEmail())
-                ->setBody('Votre réservation est enregistrée.<br/>Merci de voyager avec Flyaround', 'text/html');
-            $this->get('mailer')->send($message);*/
+            try {
+                $mailer->sendMail($this->getUser()->getEmail(), 'confirmation');
+            } catch (\Twig_Error_Loader $e) {
+            } catch (\Twig_Error_Runtime $e) {
+            } catch (\Twig_Error_Syntax $e) {
+            }
 
             /* End send mail with SwiftMailer */
 

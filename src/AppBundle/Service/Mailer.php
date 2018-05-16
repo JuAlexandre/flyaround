@@ -47,7 +47,7 @@ class Mailer
     public function sendMail($recipient, $type)
     {
         switch ($type) {
-            case 'notification': /* Pilot */
+            case 'notification':
                 $message = (new \Swift_Message(self::SUBJECT))
                     ->setFrom(self::FROM)
                     ->setTo($recipient)
@@ -55,7 +55,7 @@ class Mailer
                 $this->mailer->send($message);
                 break;
 
-            case 'confirmation': /* Passenger */
+            case 'confirmation':
                 $message = (new \Swift_Message(self::SUBJECT))
                     ->setFrom(self::FROM)
                     ->setTo($recipient)
