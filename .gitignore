@@ -18,3 +18,4 @@
 /web/build/
 *.php~
 /node_modules/
+.idea
