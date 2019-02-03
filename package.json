@@ -1,7 +1,7 @@
 {
   "name": "flyaround",
   "version": "1.0.0",
-  "description": "Wild Code School : Quête : Symfony et Webpack Encore",
+  "description": "WCS Quest : Flyaround",
   "main": "webpack.config.js",
   "directories": {
     "test": "tests"
@@ -19,7 +19,10 @@
     "sass-loader": "^7.0.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "encore dev --watch",
+    "dev": "encore dev",
+    "prod": "encore production"
   },
   "repository": {
     "type": "git",
